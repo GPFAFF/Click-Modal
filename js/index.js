@@ -1,10 +1,8 @@
-$(function(){
-
-    if (window.location.href === ("file:///Users/gpfaff/Desktop/Razorfish-Dev/SF-Modal/test.html")) {
+function languageWarningModal() {
         
-      /*if (location.hostname.match === ("es.statefarm.com") */
+    if(location.href.indexOf("test.html") > -1) {
         modalBody = $('.nav-modal-container');
-        warningModal = $('.display-language-warning');
+        warningModal = $('a.display-language-warning');
         closeButton = $('a.btn-close.close');
         cancelButton = $('.btn.btn-primary.cancel');
         continueButton = $('a.btn.btn-primary.continue');
@@ -12,24 +10,32 @@ $(function(){
 
         warningModal.click(function(e) {
 
-        	e.preventDefault();
+            e.preventDefault();
 
             modalBody.addClass('active');
+            
             languageModal.removeClass('hide');
+
+            console.log('Yep, been clicked');
+
             continueButton.attr("href", $(this).attr("href"));
 
-    	});
-    	
-    	var cancelClick = function(e){
-  			e.preventDefault();
-    		modalBody.removeClass('active');
-    		languageModal.addClass('hide');
-    	};
+        });
+        var cancelClick = function(e){
+            
+            e.preventDefault();
+            
+            modalBody.removeClass('active');
+            
+            languageModal.addClass('hide');
+        };
 
-    	closeButton.on('click', cancelClick);
+        closeButton.on('click', cancelClick);
         cancelButton.on('click', cancelClick);
+     }
+};
 
-    } else {
-        return false
-    }
+$(document).ready(function() {
+    languageWarningModal();
+
 });
